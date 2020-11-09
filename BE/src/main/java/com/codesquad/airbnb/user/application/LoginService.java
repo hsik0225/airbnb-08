@@ -19,7 +19,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.codesquad.airbnb.common.utils.JwtUtils.createToken;
@@ -73,9 +75,20 @@ public class LoginService {
         Map<String, Object> userMap = new HashMap<>();
         userMap.put("id", user.getUserId());
 
-        response.addCookie(new Cookie("jwt", createToken(userMap)));
-        response.addCookie(new Cookie("userId", user.getNickName()));
-        response.addCookie(new Cookie("userImage", user.getPictureUrl()));
+        Cookie jwtCookie = new Cookie("jwt", createToken(userMap));
+        Cookie userIdCookie = new Cookie("userId", user.getNickName());
+        Cookie pictureCookie = new Cookie("userImage", user.getPictureUrl());
+
+        List<Cookie> cookies = new ArrayList<>();
+        cookies.add(jwtCookie);
+        cookies.add(userIdCookie);
+        cookies.add(pictureCookie);
+
+        cookies.forEach(cookie -> {
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        });
+
         response.sendRedirect("http://3.34.117.168/");
     }
 
