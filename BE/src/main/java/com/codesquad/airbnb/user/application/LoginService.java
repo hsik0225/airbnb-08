@@ -70,7 +70,7 @@ public class LoginService {
         response.addCookie(new Cookie("jwt", createToken(userMap)));
         response.addCookie(new Cookie("userId", user.getNickName()));
         response.addCookie(new Cookie("userImage", user.getPictureUrl()));
-        response.sendRedirect("http://3.34.110.161/");
+        response.sendRedirect("http://3.34.117.168/main");
     }
 
     private User parseUserInfo(String data) throws JsonProcessingException {
