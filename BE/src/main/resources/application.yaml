@@ -11,13 +11,13 @@ spring:
     platform: mysql
 
 github:
-  client-id: ENC(pZX3ky4LlJA0EaNyjfryTJrrg+wMqS17)
-  client-secret: ENC(9B04CF83IGcKbUt225dta7TlLtBclJnvIURo15mlXo2nbqK+0OWhcY1cT67HqutU)
+  client-id: ENC(CN9dc5xrwzXTcSNKOnjifTjAEW5egizN3sYsayrFRMXbcv17zTsK+2GmUFqpAi4sjSfPPM8BGIQXUE3q+Ex6XA==)
+  client-secret: ENC(YVWRlAETZ49LxvmkzrNiOD4r3QRZP4s1N75Q/4wNqOl5dS7Mlhs2HanYj4uhDSG+8RhXMr0inK2AjMgP/JzKm0V2CiT15e+j/uuQ7NSSP5o=)
   user-api-url: https://api.github.com/user
   access-token-url: https://github.com/login/oauth/access_token
 
 jwt:
-  key: ENC(7t4lhka8WWQ=)
+  key: ENC(t/LBsuV02orfhLkLcskNxkpW63AY+ypsWISnMjrAeTcNOzSSi0MOJbhKAGF/DZLX)
 
 debug: true
 
@@ -26,9 +26,10 @@ spring:
   profiles: local
 
   datasource:
-    url: ENC(yAAKfSsndK8iJjvfYMsK/+Lrb9vQfJ//0JQ4sz1ZF5H2ebBOzWYY2glEFb/fjAqg+gVzvRQTd8cfOL3a/rDKl7LLY0rRQ3B+L6cQDN/p6QY=)
-    username: ENC(MXeQAanxppo=)
-    password: ENC(QQErW0P9WFtyBoyisL9XAw==)
+    initialization-mode: never
+    url: ENC(tRrIOp5nO55N8q8Qq6Xdc4Fhatvl85mCaQFhijS5twYeescFDu7v+nsgzcA0gocbirAn/1d3cRPXZT5rCBIFqq3XYe9pNjmLfggyRiBrYQ88A07VddGPAHoAK9WiWj7yXqjh+bz9LY4Bo3V0jIIJSQ==)
+    username: ENC(AgBSwFOGKfOukj5tDRbSX/Q0M1fKgaBtB7mGaqgRwdhsYFZpVqYq3Qh5WL9ZehQN)
+    password: ENC(AFdKnEr2z3Ds8rIhtfR6oHJ3BRFiFI4UJf19C0WjqCLSPgZXQzZ7+lydv3toRfvj)
 
 logging:
   level:
