@@ -67,7 +67,7 @@ public class ManagerDAO {
 
                 Bill bill = new Bill(
                         salesPrice,
-                        length + 1,
+                        length,
                         salesPrice * length,
                         cleaningFee,
                         deposit,
