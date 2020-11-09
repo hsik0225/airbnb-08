@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GitHubTokenRequest {
 
     @JsonProperty("code")
-    private String code;
+    private final String code;
 
     @JsonProperty("client_id")
-    private String clientId;
+    private final String clientId;
 
     @JsonProperty("client_secret")
-    private String clientSecret;
+    private final String clientSecret;
 
     public GitHubTokenRequest(String code, GitHubOAuthProperty clientInfo) {
         this.code = code;

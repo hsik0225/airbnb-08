@@ -18,9 +18,6 @@ github:
 
 jwt:
   key: ENC(t/LBsuV02orfhLkLcskNxkpW63AY+ypsWISnMjrAeTcNOzSSi0MOJbhKAGF/DZLX)
-
-debug: true
-
 ---
 spring:
   profiles: local

@@ -2,6 +2,7 @@ package com.codesquad.airbnb.reservation.infra;
 
 import com.codesquad.airbnb.reservation.domain.Guest;
 import com.codesquad.airbnb.reservation.domain.ReservationDate;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -21,9 +22,11 @@ public class ReservationDAO {
     }
 
     @Transactional
-    public void reserve(boolean canReserve, Long roomId, Long userId, ReservationDate reservationDate, Guest guest) {
-        if(!canReserve) {
-            throw new IllegalArgumentException("Already reserved room, Please reserve another room!");
+    public void reserve(boolean canReserve, Long roomId, Long userId,
+                        ReservationDate reservationDate, Guest guest) {
+        if (!canReserve) {
+            throw new IllegalArgumentException(
+                    "Already reserved room, Please reserve another room!");
         }
 
         insertReservationOfNewUser(roomId, userId);
@@ -40,7 +43,8 @@ public class ReservationDAO {
     }
 
     private Boolean isReservedUser(Long roomId, Long userId) {
-        String sql = "SELECT IF(count(*) > 0, true, false) AS exist FROM reservations r WHERE r.room_id = ? AND user_id = ?";
+        String sql =
+                "SELECT IF(count(*) > 0, true, false) AS exist FROM reservations r WHERE r.room_id = ? AND user_id = ?";
 
         RowMapper<Boolean> rowMapper = new RowMapper<Boolean>() {
             @Override
@@ -49,17 +53,22 @@ public class ReservationDAO {
             }
         };
 
-        return this.jdbcTemplate.queryForObject(sql, new Object[]{roomId, userId}, rowMapper);
+        return this.jdbcTemplate.queryForObject(sql, new Object[] {roomId, userId}, rowMapper);
     }
 
     private void insertGuests(Long roomId, Long userId, Guest guest) {
-        String sql = "INSERT INTO guests (room_id, user_id, number_of_adults, number_of_kids, number_of_babies) VALUES (?,?,?,?,?)";
-        this.jdbcTemplate.update(sql, roomId, userId, guest.getNumberOfAdults(), guest.getNumberOfKids(), guest.getNumberOfBabies());
+        String sql =
+                "INSERT INTO guests (room_id, user_id, number_of_adults, number_of_kids, number_of_babies) VALUES (?,?,?,?,?)";
+        this.jdbcTemplate
+                .update(sql, roomId, userId, guest.getNumberOfAdults(), guest.getNumberOfKids(),
+                        guest.getNumberOfBabies());
     }
 
     private void insertReservationDate(Long roomId, Long userId, ReservationDate reservationDate) {
-        String sql = "INSERT INTO dates (room_id, user_id, check_in_date, check_out_date) VALUES (?, ?, ?, ?)";
-        this.jdbcTemplate.update(sql, roomId, userId, reservationDate.getCheckInDate(), reservationDate.getCheckOutDate());
+        String sql =
+                "INSERT INTO dates (room_id, user_id, check_in_date, check_out_date) VALUES (?, ?, ?, ?)";
+        this.jdbcTemplate.update(sql, roomId, userId, reservationDate.getCheckInDate(),
+                reservationDate.getCheckOutDate());
     }
 }
 

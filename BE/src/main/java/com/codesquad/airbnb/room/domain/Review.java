@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Review {
 
-    private int numberOfReviews;
+    private final int numberOfReviews;
 
-    private double reviewScoreRating;
+    private final double reviewScoreRating;
 }

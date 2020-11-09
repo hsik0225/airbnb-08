@@ -7,15 +7,15 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Bill {
 
-    private int salesPrice;
+    private final int salesPrice;
 
-    private int lengthOfStay;
+    private final int lengthOfStay;
 
-    private int priceWithoutFee;
+    private final int priceWithoutFee;
 
-    private int cleaningFee;
+    private final int cleaningFee;
 
-    private int securityDeposit;
+    private final int securityDeposit;
 
-    private int priceWithFee;
+    private final int priceWithFee;
 }

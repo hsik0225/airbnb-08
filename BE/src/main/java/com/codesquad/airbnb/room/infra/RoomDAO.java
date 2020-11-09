@@ -4,7 +4,9 @@ import com.codesquad.airbnb.manager.ManagerDAO;
 import com.codesquad.airbnb.reservation.domain.Guest;
 import com.codesquad.airbnb.reservation.domain.ReservationDate;
 import com.codesquad.airbnb.room.domain.*;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -28,7 +30,8 @@ public class RoomDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Main main(ManagerDAO managerDAO, ReservationDate reservationDate, Guest guest, Budget budget) {
+    public Main main(ManagerDAO managerDAO, ReservationDate reservationDate, Guest guest,
+                     Budget budget) {
         LocalDate checkInDate = reservationDate.getCheckInDate();
         LocalDate checkOutDate = reservationDate.getCheckOutDate();
 
@@ -50,15 +53,17 @@ public class RoomDAO {
                 "LEFT OUTER JOIN dates d on r3.room_id = d.room_id " +
                 "WHERE (p.price BETWEEN ? AND ?) " +
                 "GROUP BY r.room_id";
-        
+
         RowMapper<RoomDetail> roomRowMapper = new RowMapper<RoomDetail>() {
             @Override
             public RoomDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int originPrice = rs.getInt("price");
-                int salesPrice = rs.getString("host").equals("슈퍼호스트") ? (int) (originPrice * 0.9) : originPrice;
+                int salesPrice = rs.getString("host").equals("슈퍼호스트") ? (int) (originPrice * 0.9) :
+                        originPrice;
 
                 int length = (int) (ChronoUnit.DAYS.between(checkInDate, checkOutDate));
-                int totalPrice = checkInDate.equals(LocalDate.MIN) ? salesPrice : (length + 1) * salesPrice;
+                int totalPrice =
+                        checkInDate.equals(LocalDate.MIN) ? salesPrice : (length + 1) * salesPrice;
 
                 Price price = new Price(originPrice, salesPrice, totalPrice);
 
@@ -78,7 +83,8 @@ public class RoomDAO {
             }
         };
 
-        List<RoomDetail> rooms = this.jdbcTemplate.query(sql, new Object[]{lowestPrice, highestPrice}, roomRowMapper);
+        List<RoomDetail> rooms = this.jdbcTemplate
+                .query(sql, new Object[] {lowestPrice, highestPrice}, roomRowMapper);
 
         return new Main(reservationDate, guest, budget, rooms.size(), rooms);
     }
@@ -89,7 +95,8 @@ public class RoomDAO {
         int highestPrice = 0;
         int averagePrice = 0;
 
-        String sql = "SELECT p.price FROM rooms r INNER JOIN prices p ON r.room_id = p.room_id LEFT OUTER JOIN dates d on r.room_id = d.room_id WHERE ((? NOT BETWEEN d.check_in_date AND d.check_out_date) AND (? NOT BETWEEN d.check_in_date AND d.check_out_date)) OR d.check_in_date IS NULL GROUP BY r.room_id ORDER BY price ASC";
+        String sql =
+                "SELECT p.price FROM rooms r INNER JOIN prices p ON r.room_id = p.room_id LEFT OUTER JOIN dates d on r.room_id = d.room_id WHERE ((? NOT BETWEEN d.check_in_date AND d.check_out_date) AND (? NOT BETWEEN d.check_in_date AND d.check_out_date)) OR d.check_in_date IS NULL GROUP BY r.room_id ORDER BY price ASC";
 
         RowMapper<Integer> rowMapper = new RowMapper<Integer>() {
             @Override
@@ -99,7 +106,9 @@ public class RoomDAO {
             }
         };
 
-        List<Integer> prices = this.jdbcTemplate.query(sql, new Object[]{reservationDate.getCheckInDate(), reservationDate.getCheckOutDate()}, rowMapper);
+        List<Integer> prices = this.jdbcTemplate.query(sql,
+                new Object[] {reservationDate.getCheckInDate(), reservationDate.getCheckOutDate()},
+                rowMapper);
 
         if (!prices.isEmpty()) {
             lowestPrice = prices.get(0);
@@ -109,14 +118,14 @@ public class RoomDAO {
 
         int endPrice = 1000000;
         int divide = 20000;
-        int[] counts = new int[endPrice/divide];
+        int[] counts = new int[endPrice / divide];
 
         for (int price : prices) {
-            if(price >= endPrice) {
-                counts[(endPrice/divide)-1]++;
+            if (price >= endPrice) {
+                counts[(endPrice / divide) - 1]++;
                 continue;
             }
-            counts[price/divide] ++;
+            counts[price / divide]++;
         }
 
         return new Statistics(lowestPrice, highestPrice, averagePrice, prices, counts);

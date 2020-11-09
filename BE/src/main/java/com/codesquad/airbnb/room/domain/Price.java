@@ -7,9 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Price {
 
-    private int originPrice;
+    private final int originPrice;
 
-    private int salesPrice;
+    private final int salesPrice;
 
-    private int totalPrice;
+    private final int totalPrice;
 }

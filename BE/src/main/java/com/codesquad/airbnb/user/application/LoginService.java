@@ -7,7 +7,9 @@ import com.codesquad.airbnb.user.domain.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -43,7 +45,8 @@ public class LoginService {
         return headers;
     }
 
-    public ResponseEntity<Void> login(String code, HttpServletResponse response) throws IOException {
+    public ResponseEntity<Void> login(String code, HttpServletResponse response)
+            throws IOException {
         User user = requestUserInfo(code);
         setCookie(user, response);
         return new ResponseEntity<>(HttpStatus.FOUND);
@@ -51,7 +54,8 @@ public class LoginService {
 
     private User requestUserInfo(String code) throws JsonProcessingException {
         String accessToken = new RestTemplate()
-                .postForObject(gitHubOAuthProperty.getAccessTokenUrl(), new GitHubTokenRequest(code, gitHubOAuthProperty), GitHubAccessToken.class)
+                .postForObject(gitHubOAuthProperty.getAccessTokenUrl(),
+                        new GitHubTokenRequest(code, gitHubOAuthProperty), GitHubAccessToken.class)
                 .getAccessToken();
 
         HttpHeaders headers = new HttpHeaders();
@@ -59,7 +63,9 @@ public class LoginService {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        String userData = new RestTemplate().exchange(gitHubOAuthProperty.getUserApiUrl(), HttpMethod.GET, entity, String.class).getBody();
+        String userData = new RestTemplate()
+                .exchange(gitHubOAuthProperty.getUserApiUrl(), HttpMethod.GET, entity, String.class)
+                .getBody();
         return parseUserInfo(userData);
     }
 

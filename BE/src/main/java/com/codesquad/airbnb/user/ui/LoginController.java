@@ -1,7 +1,9 @@
 package com.codesquad.airbnb.user.ui;
 
 import com.codesquad.airbnb.user.application.LoginService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

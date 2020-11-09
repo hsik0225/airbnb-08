@@ -2,6 +2,7 @@ package com.codesquad.airbnb.room.domain;
 
 import com.codesquad.airbnb.reservation.domain.Guest;
 import com.codesquad.airbnb.reservation.domain.ReservationDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

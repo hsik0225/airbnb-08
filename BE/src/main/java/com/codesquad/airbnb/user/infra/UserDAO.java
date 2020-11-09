@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.user.infra;
 
 import com.codesquad.airbnb.user.domain.User;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

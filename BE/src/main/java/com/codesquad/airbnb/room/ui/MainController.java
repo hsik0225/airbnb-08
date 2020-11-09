@@ -7,8 +7,9 @@ import com.codesquad.airbnb.room.domain.Main;
 import com.codesquad.airbnb.room.domain.Statistics;
 import com.codesquad.airbnb.manager.ManagerDAO;
 import com.codesquad.airbnb.room.infra.RoomDAO;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

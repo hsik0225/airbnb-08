@@ -9,13 +9,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Statistics {
 
-    private int lowestPrice;
+    private final int lowestPrice;
 
-    private int highestPrice;
+    private final int highestPrice;
 
-    private int averagePrice;
+    private final int averagePrice;
 
-    private List<Integer> prices;
+    private final List<Integer> prices;
 
-    private int[] counts;
+    private final int[] counts;
 }

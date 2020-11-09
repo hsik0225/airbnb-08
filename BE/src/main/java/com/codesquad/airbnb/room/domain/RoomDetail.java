@@ -9,19 +9,19 @@ import java.util.List;
 @AllArgsConstructor
 public class RoomDetail {
 
-    private Long roomId;
+    private final Long roomId;
 
-    private String roomName;
+    private final String roomName;
 
-    private String country;
+    private final String country;
 
-    private double reviewScoresRating;
+    private final double reviewScoresRating;
 
-    private Price price;
+    private final Price price;
 
-    private List<String> medias;
+    private final List<String> medias;
 
-    private String badge;
+    private final String badge;
 
-    private boolean available;
+    private final boolean available;
 }

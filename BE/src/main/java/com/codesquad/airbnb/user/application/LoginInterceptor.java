@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.user.application;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -19,13 +20,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                              HttpServletResponse response,
                              Object handler) {
 
-        if(request.getMethod().equals("GET")) {
+        if (request.getMethod().equals("GET")) {
             return true;
         }
 
         Cookie[] cookies = request.getCookies();
 
-        if(cookies == null) {
+        if (cookies == null) {
             return false;
         }
 
