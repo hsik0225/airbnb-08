@@ -40,6 +40,6 @@ spring:
   profiles: real_server
 
   datasource:
-    url: ENC(yAAKfSsndK8oZXkvg22SmnqwvkyH4M5qVcPpyP328F1ZX13Ze/opkVtJTyy/tXPb9tqYpCgJRa2rBBnSQcQ7qskrRZC0nAErnxu4pKXU5n/QbcNIKy23chEUJHeKlXffSBu5swPmackIR7/lcYYvgZFNMsIc+tiRWgPLKMrRwYE=)
-    username: ENC(MXeQAanxppo=)
-    password: ENC(QQErW0P9WFtyBoyisL9XAw==)
+    url: ENC(yk6nCnR2XyVGeFSQmh465FDJr7jWedMatu17MnzSGI2TFTdKyc/Llvhu3k68P6oMQHTw4aG5w8MxEaM1WW6urtNO/4t2Sb1gNlUiL98sJCJykLCUdwjk2VrQ8h2OUK27U6voRk/iMVWxEERwACLQOw==)
+    username: ENC(wamnpgKFwmO2cjfbvOyyTo4lAClyOtVcmGWVtSOyUID2pslv8PEGVDRFw0yQdz87)
+    password: ENC(jyYd6+exdGhjXtY3GmYqX8P11HFl8wUbGPp8JR+7x27vdK7TmKhMVMHMv+4tsRWF)
