@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/main")
+@RequestMapping("/")
 public class MainController {
 
     private final ManagerDAO managerDAO;
