@@ -32,6 +32,7 @@ logging:
   level:
     sql: debug
 
+debug: true
 ---
 spring:
   profiles: real_server
