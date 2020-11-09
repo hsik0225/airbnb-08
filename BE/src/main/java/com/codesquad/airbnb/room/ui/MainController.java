@@ -18,14 +18,14 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
+@RequestMapping("")
 public class MainController {
 
     private final ManagerDAO managerDAO;
 
     private final RoomDAO roomDAO;
 
-    @GetMapping("")
+    @GetMapping("/")
     public Main showMain(ReservationDate reservationDate,
                          @Valid Guest guest,
                          @Valid Budget budget) {

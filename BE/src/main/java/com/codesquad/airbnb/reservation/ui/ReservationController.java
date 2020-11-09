@@ -18,7 +18,7 @@ import static com.codesquad.airbnb.common.utils.JwtUtils.decrypt;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/main")
+@RequestMapping("")
 public class ReservationController {
 
     private final ManagerDAO managerDAO;
