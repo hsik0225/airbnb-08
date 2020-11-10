@@ -48,11 +48,6 @@ public class ManagerDAO {
 
     public Confirmation showBillAndReview(Long roomId, ReservationDate reservationDate) {
 
-        if (!canReserve(roomId, reservationDate)) {
-            throw new AlreadyReservedException (
-                    "Already reserved room, Please reserve another room!");
-        }
-
         String sql =
                 "SELECT r.room_id AS id, IF(r.host_is_superhost = 't', p.price * 0.9, p.price) AS price, p.cleaning_fee, p.security_deposit, r2.number_of_reviews, r2.review_scores_rating AS rating FROM rooms r INNER JOIN prices p on r.room_id = p.room_id INNER JOIN reviews r2 on r.room_id = r2.room_id WHERE r.room_id = ? GROUP BY r.room_id;";
 
