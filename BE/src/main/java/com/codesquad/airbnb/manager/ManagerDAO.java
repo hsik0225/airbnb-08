@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.manager;
 
+import com.codesquad.airbnb.common.exception.AlreadyReservedException;
 import com.codesquad.airbnb.reservation.domain.ReservationDate;
 import com.codesquad.airbnb.room.domain.Bill;
 import com.codesquad.airbnb.room.domain.Confirmation;
@@ -48,7 +49,7 @@ public class ManagerDAO {
     public Confirmation showBillAndReview(Long roomId, ReservationDate reservationDate) {
 
         if (!canReserve(roomId, reservationDate)) {
-            throw new IllegalArgumentException(
+            throw new AlreadyReservedException (
                     "Already reserved room, Please reserve another room!");
         }
 

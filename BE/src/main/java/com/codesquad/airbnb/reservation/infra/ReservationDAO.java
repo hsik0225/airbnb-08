@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.reservation.infra;
 
+import com.codesquad.airbnb.common.exception.AlreadyReservedException;
 import com.codesquad.airbnb.reservation.domain.Guest;
 import com.codesquad.airbnb.reservation.domain.ReservationDate;
 
@@ -25,7 +26,7 @@ public class ReservationDAO {
     public void reserve(boolean canReserve, Long roomId, Long userId,
                         ReservationDate reservationDate, Guest guest) {
         if (!canReserve) {
-            throw new IllegalArgumentException(
+            throw new AlreadyReservedException (
                     "Already reserved room, Please reserve another room!");
         }
 

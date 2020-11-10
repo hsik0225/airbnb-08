@@ -103,4 +103,13 @@ public class GlobalRestExceptionHandler {
         final ErrorResponse response = ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(AlreadyReservedException.class)
+    protected ResponseEntity<ErrorResponse> handleAlreadyReservedException (
+            AlreadyReservedException e) {
+        log.error("handleAlreadyReservedException", e);
+        final ErrorResponse response =
+                ErrorResponse.of(e.getMessage(), HttpStatus.CONFLICT.value());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
 }
