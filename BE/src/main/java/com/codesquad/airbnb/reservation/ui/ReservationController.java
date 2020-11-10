@@ -37,7 +37,7 @@ public class ReservationController {
                                               @Valid Guest guest,
                                               @CookieValue(value = "jwt") String jwtToken) {
 
-        Long id = Long.valueOf((String) decrypt(jwtToken).get("id"));
+        Long id = Long.valueOf((Integer) decrypt(jwtToken).get("id"));
         reservationService.reserve(roomId, id, reservationDate, guest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
